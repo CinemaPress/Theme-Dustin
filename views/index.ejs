@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="<%- page.language %>" class=""
+      prefix="og: http://ogp.me/ns# video: http://ogp.me/ns/video# ya: http://webmaster.yandex.ru/vocabularies/">
+
+<head>
+    <%- include('includes/head.ejs'); -%>
+</head>
+
+<body class="dark">
+<%- include('includes/preloader.ejs'); -%>
+<% if (typeof page.adv === 'object' && page.adv.brand) { %>
+    <%- page.adv.brand %>
+<% } %>
+<div class="layout-wrapper">
+    <%- include('includes/header.ejs'); -%>
+    <div class="content-wrapper">
+        <div class="navigation">
+            <%- include('includes/nav.ejs'); -%>
+        </div>
+        <div class="content-body">
+            <div class="content">
+                <% if (typeof slider === 'object' && slider.length) { %>
+                    <div class="row" style="margin-top: 10px">
+                        <% slider.slice(0, 3).forEach(function (movie, i) { %>
+                            <div class="col-lg-4 col-md-4">
+                                <a href="<%- movie.url %>" class="card-top-hover">
+                                    <div class="lazy card" style="height:150px;background: url('<%- movie.picture_min %>') center no-repeat; background-size: cover" data-bg="<%- movie.picture_big %>">
+                                        <div class="bg-top"></div>
+                                        <div class="bg-top num-top"><%- i + 1 %></div>
+                                        <div class="card-body card-top">
+                                            <h6 class="card-title card-top-title d-flex justify-content-between">
+                                                <%- movie.title %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        <% }); %>
+                    </div>
+                <% } %>
+
+                <% if (typeof index === 'object') { %>
+                    <% for (var type in index) { %>
+                        <% if (index.hasOwnProperty(type) && index[type].length && type === 'episode') { %>
+                            <% index[type].forEach(function (category) { %>
+                                <% var moreEpisodes = false; %>
+                                <% if (typeof category === 'object' && category.movies && category.movies.length) { %>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <div class="card">
+                                                <div class="bg-episodes"></div>
+                                                <div class="card-body">
+                                                    <div class="timeline">
+
+                                                        <% category.movies.forEach(function (movie) { %>
+
+                                                            <div class="timeline-item"
+                                                                 <% if (movie.hide) { moreEpisodes = true; %>style="display:none"
+                                                                 data-more-episodes
+                                                                    <% } %>
+                                                            >
+                                                                <div>
+                                                                    <figure class="avatar avatar-sm mr-3 bring-forward">
+                                                                        <span class="avatar-title rounded-square text-white">
+                                                                            <%- movie.title.charAt(0) %>
+                                                                        </span>
+                                                                    </figure>
+                                                                </div>
+                                                                <div>
+                                                                    <a href="<%- movie.url %>">
+                                                                        <h6 class="d-flex justify-content-between mb-4">
+                                                                            <span>
+                                                                                <span class="title-episode text-white"><%- movie.title.substr(1) %></span>
+                                                                                <span class="badge"
+                                                                                      style="padding: .25em .4em">
+                                                                                    <% if (movie.season && movie.episode) { %>
+                                                                                        <%- movie.season %> <%- page.l.season %>
+                                                                                        <%- movie.episode %> <%- page.l.episode %>
+                                                                                    <% } %>
+                                                                                </span>
+                                                                            </span>
+                                                                            <span class="badge text-muted font-weight-normal">
+                                                                                <% if (movie.translate) { %>
+                                                                                    <%- movie.translate %>
+                                                                                <% } %>
+                                                                            </span>
+                                                                        </h6>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+
+                                                        <% }); %>
+
+                                                        <% if (moreEpisodes) { %>
+                                                            <button type="button" class="btn btn-light btn-uppercase"
+                                                                    onclick="var dme = document.querySelectorAll('[data-more-episodes]'); dme && dme.forEach(function(e) {e.style.display='flex'});this.style.display='none'">
+                                                                <i class="ti-plus mr-2"></i> <%- page.l.moreEpisodes %>
+                                                            </button>
+                                                        <% } %>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                <% } %>
+                            <% }); %>
+                        <% } %>
+                    <% } %>
+                <% } %>
+
+                <% if (typeof page.adv === 'object' && page.adv.top) { %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="text-align:center;margin-bottom: 10px">
+                                <%- page.adv.top %>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <% if (typeof index === 'object') { %>
+                            <% for (var type in index) { %>
+                                <% if (index.hasOwnProperty(type) && index[type].length && type !== 'episode') { %>
+                                    <% index[type].forEach(function (category) { %>
+
+                                        <div class="randomMovieIndex">
+                                            <div class="cinemapress-random-index"
+                                                 onclick="window.location.href='<%- category.url %>?random'"
+                                                 title="<%- page.l.random %>">
+                                                <img src="/themes/<%- page.theme %>/public/images/dice.svg"
+                                                     alt="<%- page.l.random %>">
+                                            </div>
+                                        </div>
+
+                                        <h2><%- category.name %></h2>
+
+                                        <div class="card-columns">
+                                            <% if (typeof category === 'object' && category.movies && category.movies.length) { %>
+                                                <% category.movies.forEach(function (movie) { %>
+                                                    <%- include('includes/single.ejs', {movie: movie}); -%>
+                                                <% }); %>
+                                            <% } %>
+                                        </div>
+
+                                    <% }); %>
+                                <% } %>
+                            <% } %>
+                        <% } %>
+
+                        <% if (typeof page.pagination === 'object') { %>
+
+                            <nav class="nav-center">
+                                <ul class="pagination pagination-rounded justify-content-center">
+
+                                    <% if (page.pagination.first) { %>
+                                        <li class="page-item">
+                                            <a href="<%- page.pagination.first.link %>" class="page-link">
+                                                <i class="ti-angle-left"></i>
+                                            </a>
+                                        </li>
+                                    <% } %>
+
+                                    <% if (page.pagination.prev.length) { %>
+                                        <% page.pagination.prev.forEach(function (prev) { %>
+                                            <li class="page-item" aria-current="page">
+                                                <a class="page-link" href="<%- prev.link %>"><%- prev.number %></a>
+                                            </li>
+                                        <% }); %>
+                                    <% } %>
+
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="#"><%- page.pagination.current %></a>
+                                    </li>
+
+                                    <% if (page.pagination.next.length) { %>
+                                        <% page.pagination.next.forEach(function (next) { %>
+                                            <li class="page-item" aria-current="page">
+                                                <a class="page-link" href="<%- next.link %>"><%- next.number %></a>
+                                            </li>
+                                        <% }); %>
+                                    <% } %>
+
+                                    <% if (page.pagination.last) { %>
+                                        <li class="page-item">
+                                            <a href="<%- page.pagination.last.link %>" class="page-link">
+                                                <i class="ti-angle-right"></i>
+                                            </a>
+                                        </li>
+                                    <% } %>
+
+                                </ul>
+                            </nav>
+
+                        <% } %>
+
+                    </div>
+                </div>
+
+                <% if (page.seo) { %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-scroll text-justify">
+                                        <div class="page-header" style="justify-content: center;">
+                                            <h1 style="font-size: 20px"><%- page.h1 %></h1>
+                                        </div>
+                                        <%- page.seo %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+            <footer class="content-footer">
+                <%- include('includes/footer.ejs'); -%>
+            </footer>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

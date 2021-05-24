@@ -1,0 +1,20 @@
+<div>&copy;&nbsp;<%- new Date().getFullYear() %>&nbsp;<a href="https://cinemapress.io" target="_blank">CinemaPress</a> - <span id="mylo"></span><script>(function(d,i,l,r){d.getElementById(i).innerHTML=l+'@'+r;})(window.document,'mylo','<%- page.email.split('@')[0] %>','<%- page.email.split('@')[1] %>');</script></div>
+<div>
+    <% if (page.social) { %>
+    <nav class="nav">
+        <% if (page.social.vk) { %><a href="<%- page.social.vk %>" class="nav-link" target="_blank"><%- page.l.vk %></a><% } %>
+        <% if (page.social.facebook) { %><a href="<%- page.social.facebook %>" class="nav-link" target="_blank">facebook</a><% } %>
+        <% if (page.social.twitter) { %><a href="<%- page.social.twitter %>" class="nav-link" target="_blank">twitter</a><% } %>
+        <% if (page.social.youtube) { %><a href="<%- page.social.youtube %>" class="nav-link" target="_blank"><%- page.l.youtube %></a><% } %>
+        <% if (page.social.instagram) { %><a href="<%- page.social.instagram %>" class="nav-link" target="_blank"><%- page.l.instagram %></a><% } %>
+        <% if (page.social.telegram) { %><a href="<%- page.social.telegram %>" class="nav-link" target="_blank"><%- page.l.telegram %></a><% } %>
+    </nav>
+    <% } %>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.26.0/feather.min.js"></script>
+<script src="/themes/<%- page.theme %>/public/js/nicescroll.min.js?v=<%- page.ver %>"></script>
+<script src="/themes/<%- page.theme %>/public/js/app.min.js?v=<%- page.ver %>"></script>
+<%- page.codes.footer %>

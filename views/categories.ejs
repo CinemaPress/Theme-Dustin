@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="<%- page.language %>" class=""
+      prefix="og: http://ogp.me/ns# video: http://ogp.me/ns/video# ya: http://webmaster.yandex.ru/vocabularies/">
+
+<head>
+    <%- include('includes/head.ejs'); -%>
+</head>
+
+<body class="dark">
+<%- include('includes/preloader.ejs'); -%>
+<% if (typeof page.adv === 'object' && page.adv.brand) { %>
+    <%- page.adv.brand %>
+<% } %>
+<div class="layout-wrapper">
+    <%- include('includes/header.ejs'); -%>
+    <div class="content-wrapper">
+        <div class="navigation">
+            <%- include('includes/nav.ejs'); -%>
+        </div>
+        <div class="content-body">
+            <div class="content">
+                <div class="page-header text-center">
+                    <h1><%- page.h1 %></h1>
+                </div>
+
+                <% if (typeof page.adv === 'object' && page.adv.top) { %>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div style="text-align:center">
+                            <%- page.adv.top %>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <% if (typeof categories === 'object' && categories.length) { %>
+                            <% categories.forEach(function (content) { %>
+                                <div style="float:left;width:50%;">
+                                    <div style="margin:10px;padding:0;position:relative">
+                                        <div class="cinemapress-categories"
+                                             style="background-image:url('<%- content.image %>');"></div>
+                                        <a href="<%- content.url %>"
+                                           class="cinemapress-categories-title"><%= content.title %></a>
+                                    </div>
+                                </div>
+                            <% }); %>
+                        <% } %>
+
+                    </div>
+                </div>
+
+                <% if (typeof page.adv === 'object' && page.adv.bottom) { %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="text-align:center">
+                                <%- page.adv.bottom %>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+            <footer class="content-footer">
+                <%- include('includes/footer.ejs'); -%>
+            </footer>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

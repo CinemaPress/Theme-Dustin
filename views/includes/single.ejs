@@ -1,0 +1,49 @@
+<div class="card" onclick="window.location.href='<%- movie.url %>'" style="cursor: pointer">
+    <img src="<%- movie.poster_min %>" data-src="<%- movie.poster_big %>" class="lazy card-img-top" alt="image">
+    <div class="bg"></div>
+    <div class="card-top">
+        <% if (movie.type === 1) { %>
+            <% if (movie.translate) { %>
+                <span class="badge" style="background: #007b7b"><%- movie.translate %></span>
+            <% } else { %>
+                <span class="badge" style="background: #007b7b"><%- page.l.series %></span>
+            <% } %>
+        <% } else { %>
+            <% if (movie.quality) { %>
+                <span class="badge" style="background: #1d7f5a"><%- movie.quality %></span>
+            <% } else { %>
+                <span class="badge" style="background: #1d7f5a"><%- page.l.movies %></span>
+            <% } %>
+        <% } %>
+    </div>
+    <div class="card-body">
+        <div class="card-header">
+            <a href="<%- movie.url %>"><%- movie.title %></a>
+        </div>
+        <ul class="list-inline">
+            <% for (var i = 0; i < 50; i = i + 10) { %>
+                <% if (i < movie.rating / 2) { %>
+                    <% if ((i + 5) < movie.rating / 2) { %>
+                        <li class="list-inline-item">
+                            <i class="fa fa-star text-warning"></i>
+                        </li>
+                    <% } else { %>
+                        <li class="list-inline-item">
+                            <i class="fa fa-star-half-o text-warning"></i>
+                        </li>
+                    <% } %>
+                <% } %>
+                <% if (i >= movie.rating / 2) { %>
+                    <li class="list-inline-item">
+                        <i class="fa fa-star-o"></i>
+                    </li>
+                <% } %>
+            <% } %>
+        </ul>
+        <ul class="list-group list-group-flush">
+            <% if (movie.year) { %><li class="list-group-item"><span style="color: #dfb47d"><%- page.l.year %>:</span> <%- movie.year %></li><% } %>
+                <% if (movie.country) { %><li class="list-group-item"><span style="color: #dfb47d"><%- page.l.country %>:</span> <%- movie.country %></li><% } %>
+                <% if (movie.genres) { %><li class="list-group-item"><span style="color: #dfb47d"><%- page.l.genre %>:</span> <%- movie.genres %></li><% } %>
+        </ul>
+    </div>
+</div>

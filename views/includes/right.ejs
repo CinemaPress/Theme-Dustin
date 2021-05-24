@@ -1,0 +1,125 @@
+<div class="card" style="background: inherit;">
+                                    <span class="watchLaterBlock" style="display:none;">
+                                        <a href="javascript:void(0)" id="watchLater"
+                                           class="btn btn-outline-light btn-uppercase btn-block"><i
+                                                    class="ti-bookmark mr-2"></i> <%- page.l.later %></a>
+                                    </span>
+</div>
+
+<div class="card">
+    <ul class="list-group list-group-flush">
+        <% if (movie.premiere) { %>
+            <li class="list-group-item font-weight-bold"><%- page.l.premiere %>:</li>
+            <li class="list-group-item"><%- movie.premiere %></li>
+        <% } %>
+        <% if (movie.countries_url) { %>
+            <li class="list-group-item font-weight-bold"><%- page.l.country %>:</li>
+            <li class="list-group-item"><%- movie.countries_url %></li>
+        <% } %>
+        <% if (movie.genres_url) { %>
+            <li class="list-group-item font-weight-bold"><%- page.l.genre %>:</li>
+            <li class="list-group-item"><%- movie.genres_url %></li>
+        <% } %>
+        <% if (movie.directors_url) { %>
+            <li class="list-group-item font-weight-bold"><%- page.l.director %>:</li>
+            <li class="list-group-item"><%- movie.directors_url %></li>
+        <% } %>
+        <% if (movie.actors_url) { %>
+            <li class="list-group-item font-weight-bold"><%- page.l.actors %>:</li>
+            <li class="list-group-item"><%- movie.actors_url %></li>
+        <% } %>
+        <% if (movie.tags_url) { %>
+            <li class="list-group-item font-weight-bold"><%- page.l.tags %>:</li>
+            <li class="list-group-item"><%- movie.tags_url %></li>
+        <% } %>
+    </ul>
+</div>
+
+<% if (movie.kp_vote || movie.imdb_vote) { %>
+    <div class="card">
+        <ul class="list-group list-group-flush">
+            <% if (movie.kp_vote) { %>
+                <li class="list-group-item text-center font-weight-bold kp-weight-bold"><%- page.l.kp %>:</li>
+                <li class="list-group-item text-center">
+                    <ul class="list-inline">
+                        <% for (var i = 0; i < 50; i = i + 10) { %>
+                            <% if (i < movie.kp_rating / 2) { %>
+                                <% if ((i + 5) < movie.kp_rating / 2) { %>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star kp-weight-bold"></i>
+                                    </li>
+                                <% } else { %>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star-half-o kp-weight-bold"></i>
+                                    </li>
+                                <% } %>
+                            <% } %>
+                            <% if (i >= movie.kp_rating / 2) { %>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-star-o"></i>
+                                </li>
+                            <% } %>
+                        <% } %>
+                    </ul>
+                </li>
+            <% } %>
+            <% if (movie.imdb_vote) { %>
+                <li class="list-group-item text-center font-weight-bold imdb-weight-bold"><%- page.l.imdb %>:
+                </li>
+                <li class="list-group-item text-center">
+                    <ul class="list-inline">
+                        <% for (var i = 0; i < 50; i = i + 10) { %>
+                            <% if (i < movie.imdb_rating / 2) { %>
+                                <% if ((i + 5) < movie.imdb_rating / 2) { %>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star imdb-weight-bold"></i>
+                                    </li>
+                                <% } else { %>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star-half-o imdb-weight-bold"></i>
+                                    </li>
+                                <% } %>
+                            <% } %>
+                            <% if (i >= movie.imdb_rating / 2) { %>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-star-o"></i>
+                                </li>
+                            <% } %>
+                        <% } %>
+                    </ul>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+<% } %>
+
+<% if (typeof soon === 'object' && soon.length) { %>
+    <div class="card">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item font-weight-bold">
+                <%- page.l.soon %>:
+            </li>
+            <% soon.forEach(function (movie) { %>
+                <li class="list-group-item"><a href="<%- movie.url %>"><span><%= movie.title %></span> <span class="text-muted">(<%- movie.premiere %>)</span></a></li>
+            <% }); %>
+        </ul>
+    </div>
+<% } %>
+
+<% if (typeof contents === 'object' && contents.length) { %>
+    <% contents.forEach(function (content) { %>
+        <div style="float:left;width:100%;">
+            <div style="margin:0 0 10px 0;padding:0">
+                <a href="<%- content.url %>" class="cinemapress-news lazy" style="background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAADICAQAAABrVzQQAAABLUlEQVR42u3RMQEAAAgDoC251W3hI1SgmfBMpUtHOtKRjnSkIx3pSEc60pGOdKQjHelIl450pCMd6UhHOtKRjnSkIx3pSEc60pEuHelIRzrSkY50pCMd6UhHOtKRjnSkI1060pGOdKQjHelIRzrSkY50pCMd6UhHunSkIx3pSEc60pGOdKQjHelIRzrSkY506dKlIx3pSEc60pGOdKQjHelIRzrSkY50pEtHOtKRjnSkIx3pSEc60pGOdKQjHelIl450pCMd6UhHOtKRjnSkIx3pSEc60pEuHelIRzrSkY50pCMd6UhHOtKRjnSkI1060pGOdKQjHelIRzrSkY50pCMd6UhHunTp0pGOdKQjHelIRzrSkY50pCMd6UhHOtKlIx3pSEc60pGOdKRzawFrr2QBa00SvgAAAABJRU5ErkJggg==');" data-bg="<%- content.image %>">
+                    <div class="cinemapress-news-title"><%= content.title %></div>
+                </a>
+            </div>
+        </div>
+    <% }); %>
+<% } %>
+
+<% if (typeof page.adv === 'object' && page.adv.right) { %>
+    <div style="text-align:center;margin:10px auto;clear: both;">
+        <%- page.adv.right %>
+    </div>
+<% } %>

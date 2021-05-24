@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="<%- page.language %>" class=""
+      prefix="og: http://ogp.me/ns# video: http://ogp.me/ns/video# ya: http://webmaster.yandex.ru/vocabularies/">
+
+<head>
+    <%- include('includes/head.ejs'); -%>
+</head>
+
+<body class="dark">
+<%- include('includes/preloader.ejs'); -%>
+<% if (typeof page.adv === 'object' && page.adv.brand) { %>
+    <%- page.adv.brand %>
+<% } %>
+<div class="layout-wrapper">
+    <%- include('includes/header.ejs'); -%>
+    <div class="content-wrapper">
+        <div class="navigation">
+            <%- include('includes/nav.ejs'); -%>
+        </div>
+        <div class="content-body">
+            <div class="content">
+                <div class="page-header">
+                    <div>
+                        <% if (typeof content !== 'object') { %>
+                            <h1><%- page.h1 %></h1>
+                        <% } %>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/"><%- page.l.home %></a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    <%= page.title %>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+                <% if (typeof top === 'object' && top.length) { %>
+                    <div class="row" style="margin-top: 10px">
+                        <% top.slice(0, 3).forEach(function (movie, i) { %>
+                            <div class="col-lg-4 col-md-4">
+                                <a href="<%- movie.url %>" class="card-top-hover">
+                                    <div class="lazy card" style="height:150px;background: url('<%- movie.picture_min %>') center no-repeat; background-size: cover" data-bg="<%- movie.picture_big %>">
+                                        <div class="bg-top"></div>
+                                        <div class="bg-top num-top"><%- i + 1 %></div>
+                                        <div class="card-body card-top">
+                                            <h6 class="card-title card-top-title d-flex justify-content-between">
+                                                <%- movie.title %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        <% }); %>
+                    </div>
+                <% } %>
+
+                <% if (typeof page.adv === 'object' && page.adv.top) { %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="text-align:center;margin: 10px auto 0 auto">
+                                <%- page.adv.top %>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+
+                <% if (typeof content === 'object' && page.current_page === 1) { %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card" style="margin-top: 10px; margin-bottom: 10px;">
+                                <div class="card-body">
+
+                                    <div class="cinemapress-content">
+
+                                        <h1><%- page.h1 %></h1>
+
+                                        <% if (content.image) { %>
+                                            <img src="<%- content.image %>" alt="<%= page.h1 %>"
+                                                 class="cinemapress-content-image">
+                                        <% } %>
+
+                                        <% if (content.description) { %>
+                                            <div class="cinemapress-content-description">
+                                                <%- content.description %>
+                                            </div>
+                                        <% } %>
+
+                                        <div class="cinemapress-content-publish" style="vertical-align: middle;">
+
+                                            <% if (content.tags) { %>
+                                                <span class="cinemapress-content-publish-tags"
+                                                      style="vertical-align: middle;">
+                                                    <img src="data:image/svg+xml;base64,
+PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDQzMi41NDQgNDMyLjU0NCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDMyLjU0NCA0MzIuNTQ0OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGc+PGc+Cgk8cGF0aCBkPSJNNDIxLjk4NSwyMjkuODMzTDIxNy44NDcsMjUuOTgxYy03LjIzNS03LjIzOC0xNi45NC0xMy4zNzQtMjkuMTIxLTE4LjQxNkMxNzYuNTQxLDIuNTIyLDE2NS40MDcsMCwxNTUuMzE4LDBIMzYuNTQ3ICAgQzI2LjY0OCwwLDE4LjA4MywzLjYxOSwxMC44NSwxMC44NDhDMy42MTcsMTguMDgxLDAuMDAyLDI2LjY0NiwwLjAwMiwzNi41NDV2MTE4Ljc3MWMwLDEwLjA4OCwyLjUxOSwyMS4yMTksNy41NjQsMzMuNDA0ICAgczExLjE4MiwyMS43OTIsMTguNDE3LDI4LjgzN0wyMzAuMTE4LDQyMS45OGM3LjA0Myw3LjA0MywxNS42MDIsMTAuNTY0LDI1LjY5NywxMC41NjRjOS44OSwwLDE4LjU1OC0zLjUyMSwyNS45OC0xMC41NjQgICBsMTQwLjE4Ni0xNDAuNDdjNy4wNDMtNy4wNDYsMTAuNTYxLTE1LjYwNCwxMC41NjEtMjUuNjkzQzQzMi41NDIsMjQ1LjkxOSw0MjkuMDI0LDIzNy4yNTgsNDIxLjk4NSwyMjkuODMzeiBNMTE3LjIwMiwxMTcuMjAxICAgYy03LjE0Miw3LjEzOC0xNS43NTIsMTAuNzA5LTI1Ljg0MSwxMC43MDljLTEwLjA4NSwwLTE4LjY5OS0zLjU3MS0yNS44MzctMTAuNzA5Yy03LjEzOC03LjEzOS0xMC43MDYtMTUuNzQ5LTEwLjcwNi0yNS44MzcgICBjMC0xMC4wODksMy41NjgtMTguNzAyLDEwLjcwNi0yNS44MzdjNy4xMzktNy4xMzksMTUuNzUyLTEwLjcxLDI1LjgzNy0xMC43MWMxMC4wODksMCwxOC43MDIsMy41NzEsMjUuODQxLDEwLjcxICAgYzcuMTM1LDcuMTM1LDEwLjcwNiwxNS43NDksMTAuNzA2LDI1LjgzN0MxMjcuOTA4LDEwMS40NTIsMTI0LjM0MSwxMTAuMDYyLDExNy4yMDIsMTE3LjIwMXoiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiIHN0eWxlPSJmaWxsOiNDRkVDRkUiPjwvcGF0aD4KPC9nPjwvZz4gPC9zdmc+"
+                                                         alt="Tags"
+                                                         style="width: 10px;vertical-align: middle; margin: 0 1px 0 10px;"> <%- content.tags %>
+                                                </span>
+                                            <% } %>
+
+                                            <% if (content.publish) { %>
+                                                <span class="cinemapress-content-publish-publish"
+                                                      style="vertical-align: middle;"><img src="data:image/svg+xml;base64,
+PHN2ZyBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHdpZHRoPSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGc+PHBhdGggZD0ibTI1NiAwYy0xNDEuMTY0MDYyIDAtMjU2IDExNC44MzU5MzgtMjU2IDI1NnMxMTQuODM1OTM4IDI1NiAyNTYgMjU2IDI1Ni0xMTQuODM1OTM4IDI1Ni0yNTYtMTE0LjgzNTkzOC0yNTYtMjU2LTI1NnptMTIxLjc1IDM4OC40MTQwNjJjLTQuMTYwMTU2IDQuMTYwMTU3LTkuNjIxMDk0IDYuMjUzOTA3LTE1LjA4MjAzMSA2LjI1MzkwNy01LjQ2MDkzOCAwLTEwLjkyNTc4MS0yLjA5Mzc1LTE1LjA4MjAzMS02LjI1MzkwN2wtMTA2LjY2Nzk2OS0xMDYuNjY0MDYyYy00LjAxMTcxOS0zLjk4ODI4MS02LjI1LTkuNDEwMTU2LTYuMjUtMTUuMDgyMDMxdi0xMzguNjY3OTY5YzAtMTEuNzk2ODc1IDkuNTU0Njg3LTIxLjMzMjAzMSAyMS4zMzIwMzEtMjEuMzMyMDMxczIxLjMzMjAzMSA5LjUzNTE1NiAyMS4zMzIwMzEgMjEuMzMyMDMxdjEyOS44MzU5MzhsMTAwLjQxNzk2OSAxMDAuNDE0MDYyYzguMzM5ODQ0IDguMzQzNzUgOC4zMzk4NDQgMjEuODI0MjE5IDAgMzAuMTY0MDYyem0wIDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgc3R5bGU9ImZpbGw6I0NGRUNGRSIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiPjwvcGF0aD48L2c+IDwvc3ZnPg=="
+                                                                                           alt="Publish"
+                                                                                           style="width: 10px;vertical-align: middle; margin: 0 1px 0 10px;"> <%- content.publish %>
+                                                </span>
+                                            <% } %>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="randomMovieCategory">
+                            <div class="cinemapress-random-category"
+                                 onclick="window.location.href='<%- page.url %><%- (page.url.indexOf('?') + 1 ? '&' : '?') %>random=<%- Math.random() %>'">
+                                <img src="/themes/<%- page.theme %>/public/images/dice.svg" alt="<%- page.l.random %>">
+                                <span><%- page.l.lucky %></span>
+                                <small><%- page.l.random %></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <% if (typeof page.sorting === 'object') { %>
+                    <div class="row">
+                        <div class="col-md-12 text-center" style="margin: 10px auto 20px auto">
+                            <div class="cinemapress-sort">
+                                <% page.sorting.forEach(function (sort) { %>
+
+                                    <% if (sort.active) { %>
+                                        <a href="<%- sort.url %>"
+                                           class="cinemapress-sort-active btn btn-sm btn-outline-light disabled"><%- sort.name %></a>
+                                    <% } else { %>
+                                        <a class="btn btn-sm btn-outline-light"
+                                           href="<%- sort.url %>"><%- sort.name %></a>
+                                    <% } %>
+
+                                <% }); %>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+
+                <% if (movies.length) { %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card-columns">
+                                <% movies.forEach(function (movie) { %>
+                                    <%- include('includes/single.ejs', {movie: movie}); -%>
+                                <% }); %>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+
+                <% if (typeof page.pagination === 'object') { %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <nav class="nav-center">
+                                <ul class="pagination pagination-rounded justify-content-center">
+
+                                    <% if (page.pagination.first) { %>
+                                        <li class="page-item">
+                                            <a href="<%- page.pagination.first.link %>" class="page-link">
+                                                <i class="ti-angle-left"></i>
+                                            </a>
+                                        </li>
+                                    <% } %>
+
+                                    <% if (page.pagination.prev.length) { %>
+                                        <% page.pagination.prev.forEach(function (prev) { %>
+                                            <li class="page-item" aria-current="page">
+                                                <a class="page-link" href="<%- prev.link %>"><%- prev.number %></a>
+                                            </li>
+                                        <% }); %>
+                                    <% } %>
+
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="#"><%- page.pagination.current %></a>
+                                    </li>
+
+                                    <% if (page.pagination.next.length) { %>
+                                        <% page.pagination.next.forEach(function (next) { %>
+                                            <li class="page-item" aria-current="page">
+                                                <a class="page-link" href="<%- next.link %>"><%- next.number %></a>
+                                            </li>
+                                        <% }); %>
+                                    <% } %>
+
+                                    <% if (page.pagination.last) { %>
+                                        <li class="page-item">
+                                            <a href="<%- page.pagination.last.link %>" class="page-link">
+                                                <i class="ti-angle-right"></i>
+                                            </a>
+                                        </li>
+                                    <% } %>
+
+                                </ul>
+                            </nav>
+
+                        </div>
+                    </div>
+                <% } %>
+
+                <% if (typeof content === 'object' && page.current_page === 1) { %>
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <% if (page.comments) { %>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <%- page.comments %>
+                                    </div>
+                                </div>
+                            <% } else if (typeof comments === 'object' && typeof comments.config === 'object') { %>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div id="cinemapress-comments">
+                                            <h3 class="cinemapress-comment-h3">
+                                                <%- page.l.comments %>
+                                                <span class="cinemapress-comment-count cinemapress-comment-bg-color"><%- comments && comments.count || '0' %></span>
+                                            </h3>
+                                            <% if (typeof comments === 'object' && typeof comments.config === 'object') { %>
+                                                <% if (comments.config.star_rating) { %>
+                                                    <div class="cinemapress-comment-star">
+                                                        <div class="cinemapress-comment-star-down"
+                                                             data-comment-star="1"></div>
+                                                        <div class="cinemapress-comment-star-award"
+                                                             data-comment-star="3"></div>
+                                                        <div class="cinemapress-comment-star-up"
+                                                             data-comment-star="2"></div>
+                                                    </div>
+                                                <% } %>
+                                                <div class="cinemapress-comment-form">
+                                                    <% if (comments.config.bb_codes) { %>
+                                                        <div class="cinemapress-comment-form-bb">
+                                                            <span class="cinemapress-comment-bg cinemapress-comment-form-bb-b"
+                                                                  data-bb-code="b"><%- page.l.bold.toLowerCase() %></span>
+                                                            <span class="cinemapress-comment-bg cinemapress-comment-form-bb-i"
+                                                                  data-bb-code="i"><%- page.l.italic.toLowerCase() %></span>
+                                                            <span class="cinemapress-comment-bg cinemapress-comment-form-bb-spoiler"
+                                                                  data-bb-code="spoiler">
+                                                                👻 <%- page.l.spoiler.toLowerCase() %></span>
+                                                            <span class="cinemapress-comment-bg cinemapress-comment-form-bb-search"
+                                                                  data-bb-code="search">
+                                                                🔍 <%- page.l.search.toLowerCase() %></span>
+                                                            <input class="cinemapress-comment-bg cinemapress-comment-form-anonymous"
+                                                                   name="comment_anonymous" type="text"
+                                                                   placeholder="<%- page.l.username %>">
+                                                        </div>
+                                                    <% } %>
+                                                    <div>
+                                                        <div class="cinemapress-comment-textarea-div">
+                                                                        <textarea name="comment_text"
+                                                                                  class="cinemapress-comment-bg cinemapress-comment-textarea"
+                                                                                  placeholder="<%- page.l.comment %>"
+                                                                                  autocomplete="off"
+                                                                                  autocapitalize="off"
+                                                                                  spellcheck="false"></textarea>
+                                                            <div class="cinemapress-comment-form-bg"></div>
+                                                            <div class="cinemapress-comment-button-bg hover-off"
+                                                                 data-comment-type="submit">
+                                                                <span class="cinemapress-comment-button-text"></span>
+                                                            </div>
+                                                        </div>
+                                                        <% if (comments.config.question) { %>
+                                                            <div class="cinemapress-comment-bg cinemapress-comment-question"
+                                                                 style="display: none">
+                                                                <div class="cinemapress-comment-question-text"><%- comments.config.question %></div>
+                                                                <div class="cinemapress-comment-question-answer">
+                                                                    <% if (comments.config.question_yes) { %>
+                                                                        <span class="cinemapress-comment-question-answer-yes"><%- page.l.yes %></span>
+                                                                    <% } %>
+                                                                    <% if (comments.config.question_not) { %>
+                                                                        <span class="cinemapress-comment-question-answer-not"><%- page.l.not %></span>
+                                                                    <% } %>
+                                                                </div>
+                                                                <% if (comments.config.question_yes) { %>
+                                                                    <div class="cinemapress-comment-question-text-yes"
+                                                                         style="display: none">
+                                                                        <%- comments.config.question_yes %>
+                                                                    </div>
+                                                                <% } %>
+                                                                <% if (comments.config.question_not) { %>
+                                                                    <div class="cinemapress-comment-question-text-not"
+                                                                         style="display: none">
+                                                                        <%- comments.config.question_not %>
+                                                                    </div>
+                                                                <% } %>
+                                                                <div class="cinemapress-comment-question-bg"></div>
+                                                                <% if (comments.config.question_poster) { %>
+                                                                    <div class="cinemapress-comment-question-bg-poster"
+                                                                         style="background-image:url('<%- comments.config.question_poster %>')"></div>
+                                                                <% } %>
+                                                            </div>
+                                                        <% } %>
+                                                    </div>
+                                                    <div style="font-size:8px;text-align:right;opacity:.2">
+                                                        This site is protected by reCAPTCHA and the Google
+                                                        <a href="https://policies.google.com/privacy"
+                                                           style="font-size:8px" target="_blank">Privacy
+                                                            Policy</a> and <a
+                                                                href="https://policies.google.com/terms"
+                                                                style="font-size:8px" target="_blank">Terms
+                                                            of Service</a> apply.
+                                                    </div>
+                                                </div>
+                                                <%- comments.indexer ? comments.indexer : '' %>
+                                                <% if (comments.list && comments.list.length) { %>
+                                                    <% comments.list.forEach(function (comment) { %>
+                                                        <div class="cinemapress-comment"
+                                                             id="c<%- comment.id %>">
+                                                            <div class="cinemapress-comment-head">
+                                                                <div class="cinemapress-comment-head-avatar">
+                                                                    <img src="<%- comment.avatar %>"
+                                                                         alt="<%= comment.user %>">
+                                                                </div>
+                                                                <% if (comments.config.star_rating) { %>
+                                                                    <% if (comment.star === 1) { %>
+                                                                        <div class="cinemapress-comment-head-star">
+                                                                            <div class="cinemapress-comment-star-down"></div>
+                                                                        </div>
+                                                                    <% } else if (comment.star === 2) { %>
+                                                                        <div class="cinemapress-comment-head-star">
+                                                                            <div class="cinemapress-comment-star-up"></div>
+                                                                        </div>
+                                                                    <% } else if (comment.star === 3) { %>
+                                                                        <div class="cinemapress-comment-head-star">
+                                                                            <div class="cinemapress-comment-star-award"></div>
+                                                                        </div>
+                                                                    <% } %>
+                                                                <% } %>
+                                                                <div class="cinemapress-comment-head-meta">
+                                                                    <div class="cinemapress-comment-head-meta-vote">
+                                                                        <span class="cinemapress-comment-like"
+                                                                              data-comment-type="like"
+                                                                              data-comment-id="<%- comment.id %>"
+                                                                              title="<%= page.l.like %>">
+                                                                            <span class="cinemapress-comment-like-icon"></span>
+                                                                            <span class="cinemapress-comment-like-number"><%- comment.like %></span>
+                                                                        </span>
+                                                                        <span class="cinemapress-comment-dislike"
+                                                                              data-comment-type="dislike"
+                                                                              data-comment-id="<%- comment.id %>"
+                                                                              title="<%= page.l.dislike %>">
+                                                                            <span class="cinemapress-comment-dislike-number"><%- comment.dislike %></span>
+                                                                            <span class="cinemapress-comment-dislike-icon"></span>
+                                                                        </span>
+                                                                        <span class="cinemapress-comment-reply"
+                                                                              data-reply-id="<%- comment.id %>"
+                                                                              data-bb-code="b"
+                                                                              data-bb-value="<%- comment.user %>"
+                                                                              title="<%= page.l.reply %>">
+                                                                            <span class="cinemapress-comment-reply-icon"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="cinemapress-comment-user"
+                                                                         data-comment-id="<%- comment.id %>">
+                                                                        <div class="cinemapress-comment-user-name">
+                                                                            <%- comment.user %>
+                                                                        </div>
+                                                                        <div class="cinemapress-comment-user-said">
+                                                                            <%- page.l.said %>
+                                                                        </div>
+                                                                        <div class="cinemapress-comment-user-date">
+                                                                            <%- comment.date %>
+                                                                        </div>
+                                                                        <div class="cinemapress-comment-user-link">
+                                                                            <a href="<%- comment.url %>#c<%- comment.id %>">#</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="cinemapress-comment-bg cinemapress-comment-radius">
+                                                                <%- comment.comment %>
+                                                            </div>
+                                                            <% if (comment.admin) { %>
+                                                                <div class="cinemapress-comment-admin">
+                                                                    <div class="cinemapress-comment-bg cinemapress-comment-admin-text">
+                                                                        <%- comment.admin %>
+                                                                    </div>
+                                                                    <div class="cinemapress-comment-admin-bg"></div>
+                                                                </div>
+                                                            <% } %>
+                                                        </div>
+                                                    <% }); %>
+                                                <% } %>
+                                            <% } %>
+                                            <div class="cinemapress-comment-arrow">
+                                                <% if (comments && comments.prev) { %>
+                                                    <div class="cinemapress-prev-comments"
+                                                         onclick="window.location.href='?page=<%- comments.prev %>#cinemapress-comments'"></div>
+                                                <% } %>
+                                                <% if (comments && comments.next) { %>
+                                                    <div class="cinemapress-next-comments"
+                                                         onclick="window.location.href='?page=<%- comments.next %>#cinemapress-comments'"></div>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                <% } %>
+
+                <% if (typeof page.adv === 'object' && page.adv.bottom) { %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="text-align:center">
+                                <%- page.adv.bottom %>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+
+                <% if (page.seo) { %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card-scroll text-justify">
+                                <%- page.seo %>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+            <footer class="content-footer">
+                <%- include('includes/footer.ejs'); -%>
+            </footer>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
