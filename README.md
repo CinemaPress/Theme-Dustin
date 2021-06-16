@@ -1,10 +1,10 @@
 # Theme «dustin»
 
-![Theme «dustin» for CinemaPress](https://raw.githubusercontent.com/CinemaPress/Theme-Dustin/master/screenshot.png "Theme «dustin» for CinemaPress")
+![Theme «dustin» for CinemaPress](https://raw.githubusercontent.com/CinemaPress/Theme-Dustin/master/screenshot.png)
 
 :art: Theme «dustin» for CinemaPress
 
-- [Dustin.CinemaPress.io](http://Dustin.CinemaPress.io/)
+- `«dustin»`
 
 ## How to install?
 1. Download [GitHub](https://github.com/CinemaPress/Theme-Dustin/archive/master.zip) or [GitLab](https://gitlab.com/CinemaPress/Theme-Dustin/repository/archive.zip) or [BitBucket](https://bitbucket.org/cinemapress/theme-dustin/get/master.zip)
